@@ -6,9 +6,7 @@ This repository contains a refactored version of the classic **Brick Breaker gam
 
 ## 👤 Author
 
-- **Name:** Noor Fatima  
-- **Roll Number:** L21-6085  
-- **Course:** BS(SE)-8A  
+- **Name:** Noor Fatima    
 - **University:** FAST-NU, Lahore
 
 ---
@@ -49,4 +47,15 @@ To re-engineer the Brick Breaker game by:
 ---
 
 ## 📁 Folder Structure
-
+.
+├── src/
+│ └── brickbreaker/ # Java source files
+├── test/
+│ └── brickbreaker/ # JUnit test cases
+├── test-reports/ # Generated test result HTML reports
+├── lib/ # External libraries (JUnit, Hamcrest, etc.)
+├── metrics/ # CKJM output and analysis
+├── nbproject/ # NetBeans project configuration
+├── classDiagram.puml # Original UML diagrams
+├── classDiagram.svg # Refactored class diagram
+└── README.md # Project documentation
