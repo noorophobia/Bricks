@@ -86,7 +86,7 @@ To re-engineer the Brick Breaker game by:
 ## 📷 Screenshots & Diagrams
 
 ### Original Diagram
-![Original](cd.png)
+![Original]()
 
 ### Refactored Diagram
 ![Refactored](cdr.png)
