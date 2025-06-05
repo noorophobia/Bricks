@@ -113,6 +113,6 @@ To re-engineer the Brick Breaker game by:
 ## 📬 Contact
 
 For questions or suggestions, feel free to reach out to **Noor Fatima**  
-✉️ [youremail@example.com] *(Replace with your real email)*
+✉️ [noorf3531@gmail.com] 
 
 ---
