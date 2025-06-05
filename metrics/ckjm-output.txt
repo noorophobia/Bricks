@@ -1,0 +1,57 @@
+brickbreaker.Brick 3 6 0 1 10 3 1 0 3 1.0000 40 1.0000 0 0.9975 0.6667 0 0 11.6667
+ ~ public int getBRICK_WIDTH(): 1
+ ~ public int getBRICK_HEIGHT(): 1
+ ~ public void <init>(javax.swing.ImageIcon brickImage): 2
+
+brickbreaker.Ball 4 6 0 1 20 4 1 0 4 0.7778 140 0.3333 0 0.9963 1.0000 0 0 32.5000
+ ~ public int getBALL_WIDTH(): 1
+ ~ public void moveBall(): 4
+ ~ public void <init>(): 1
+ ~ public int getBALL_HEIGHT(): 1
+
+brickbreaker.BackgroundImageLabel 1 5 0 1 10 0 1 0 1 2.0000 34 0.0000 0 1.0000 1.0000 0 0 33.0000
+ ~ public void <init>(): 1
+
+brickbreaker.GamePanel 10 5 0 7 50 37 1 6 2 0.8990 973 0.9091 4 0.9871 0.2800 0 0 95.2000
+ ~ private java.util.ArrayList createLevelOneBrickPattern(): 3
+ ~ private java.util.ArrayList createBrickPattern(): 5
+ ~ private java.util.ArrayList createLevelTwoBrickPattern(): 6
+ ~ private java.util.ArrayList createLevelFiveBrickPattern(): 5
+ ~ private static java.util.ArrayList createLevelFourBrickPattern(): 3
+ ~ private brickbreaker.Brick checkCollisionsWithBricks(java.util.ArrayList bricks, brickbreaker.Ball ball): 18
+ ~ private java.util.ArrayList createLevelThreeBrickPattern(): 5
+ ~ private void checkCollisionsWithBase(brickbreaker.Base base, brickbreaker.Ball ball): 15
+ ~ public void <init>(): 2
+ ~ public void actionPerformed(java.awt.event.ActionEvent e): 6
+
+brickbreaker.Settings 6 1 0 2 7 3 2 0 6 0.6000 40 1.0000 1 0.0000 0.5833 0 0 5.1667
+ ~ public boolean isSoundEffectsOn(): 1
+ ~ public void setBackgroundMusicOn(boolean backgroundMusicOn): 1
+ ~ public void <init>(): 1
+ ~ public void setSoundEffectsOn(boolean soundEffectsOn): 1
+ ~ public static brickbreaker.Settings getInstance(): 2
+ ~ public boolean isBackgroundMusicOn(): 1
+
+brickbreaker.Base 7 6 0 1 23 9 1 0 7 0.7857 181 0.5714 0 0.9925 0.7143 1 1 23.8571
+ ~ public void keyReleased(java.awt.event.KeyEvent e): 3
+ ~ public void keyTyped(java.awt.event.KeyEvent e): 1
+ ~ public void keyPressed(java.awt.event.KeyEvent e): 3
+ ~ public int getBASE_HEIGHT(): 1
+ ~ public void <init>(): 1
+ ~ public void move(): 7
+ ~ public int getBASE_WIDTH(): 1
+
+brickbreaker.BrickBreaker 2 1 0 1 5 1 0 1 2 2.0000 11 0.0000 0 0.0000 0.5000 0 0 4.5000
+ ~ public static void main(String[] args): 1
+ ~ public void <init>(): 1
+
+brickbreaker.AudioPlayback 3 1 0 2 19 3 2 0 3 2.0000 89 0.0000 0 0.0000 0.3333 0 0 28.6667
+ ~ public static void playMusic(): 1
+ ~ public void <init>(): 1
+ ~ public static void playSoundEffect(): 1
+
+brickbreaker.GameFrame 3 6 0 5 20 3 1 4 1 1.0000 61 1.0000 1 0.9972 0.6667 0 0 18.3333
+ ~ private static synthetic void lambda$playBackgroundMusic$0(): 1
+ ~ public void <init>(): 2
+ ~ private void playBackgroundMusic(): 1
+

@@ -1,0 +1,88 @@
+@startuml
+
+class BrickBreaker {
+    + main(args: String[]): void
+}
+
+class GameFrame {
+    - SCREEN_WIDTH: int = 800
+    - SCREEN_HEIGHT: int = 500
+    - gameSettings: Settings
+    + GameFrame()
+    - playBackgroundMusic(): void
+}
+
+class GamePanel {
+    - PANEL_WIDTH: int = 800
+    - PANEL_HEIGHT: int = 500
+    - base: Base
+    - ball: Ball
+    - bricks: ArrayList<Brick>
+    - backgroundImageLabel: BackgroundImageLabel
+    - timer: Timer
+    - gameSettings: Settings
+    - level: int
+    - lastCollisionTime: long
+    - COLLISION_COOLDOWN: long = 100
+    + GamePanel()
+    + actionPerformed(e: ActionEvent): void
+    - createBrickPattern(): ArrayList<Brick>
+    - checkCollisionsWithBase(base: Base, ball: Ball): void
+    - checkCollisionsWithBricks(bricks: ArrayList<Brick>, ball: Ball): Brick
+}
+
+class Settings {
+    - backgroundMusicOn: boolean = true
+    - soundEffectsOn: boolean = false
+    - instance: Settings
+    + getInstance(): Settings
+    + isBackgroundMusicOn(): boolean
+    + isSoundEffectsOn(): boolean
+    + setBackgroundMusicOn(backgroundMusicOn: boolean): void
+    + setSoundEffectsOn(soundEffectsOn: boolean): void
+}
+
+class Ball {
+    - x: int
+    - y: int
+    - xVelocity: int
+    - yVelocity: int
+    + moveBall(): void
+}
+
+class Base {
+    - x: int
+    - y: int
+    - BASE_WIDTH: int
+    - BASE_HEIGHT: int
+    + move(): void
+}
+
+class Brick {
+    - BRICK_WIDTH: int
+    - BRICK_HEIGHT: int
+    + Brick(image: Image)
+}
+
+class AudioPlayback {
+    + playMusic(): void
+    + playSoundEffect(): void
+}
+
+class BackgroundImageLabel {
+ +BackgroundImageLabel()
+}
+
+BrickBreaker --> GameFrame
+GameFrame --> GamePanel
+GamePanel --> Base
+GamePanel --> Ball
+ GamePanel --> BackgroundImageLabel
+GamePanel --> Settings
+ GamePanel --> AudioPlayback
+GamePanel --> "*" Brick
+Base --> Ball
+Settings --> GameFrame
+Settings --> GamePanel
+
+@enduml

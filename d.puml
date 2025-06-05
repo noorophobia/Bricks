@@ -1,0 +1,205 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #EEEBDC
+
+   class AudioPlayback {
+    {static} MUSIC_FILE : String = "assets/background_music.wav"
+    {static} SOUND_EFFECT_FILE : String = "assets/blip.wav"
+    {static} soundEffectClip : Clip
+    {static} musicClip : Clip
+    {static} soundEffectsOn : boolean = true
+    {static} musicOn : boolean = true
+    {static} playBackgroundMusic() : void
+    {static} stopBackgroundMusic() : void
+    {static} playSoundEffect() : void
+    {static} setSoundEffectsOn(boolean on) : void
+    {static} setMusicOn(boolean on) : void
+    {static} isSoundEffectsOn() : boolean
+    {static} isMusicOn() : boolean
+  }
+
+  class BackgroundImageLabel  {
+    WIDTH : int = 800
+    HEIGHT : int = 500
+    BACKGROUND_IMAGE_PATH : String = "assets/bg.jpg"
+    backgroundImage : Image
+    + BackgroundImageLabel()
+    + setBackgroundImage() : void
+    + paintComponent(Graphics g) : void
+  }
+
+  class Settings {
+    {static} instance : Settings
+    backgroundMusicOn : boolean = true
+    soundEffectsOn : boolean = false
+    + Settings()
+    + getInstance() : Settings
+    + isBackgroundMusicOn() : boolean
+    + isSoundEffectsOn() : boolean
+    + setBackgroundMusicOn(boolean on) : void
+    + setSoundEffectsOn(boolean on) : void
+  }
+
+  class GameFrame  {
+    SCREEN_WIDTH : int = 800
+    SCREEN_HEIGHT : int = 500
+    gamePanel : GamePanel
+    gameSettings : Settings
+    + GameFrame(Settings settings)
+    + playBackgroundMusic() : void
+  }
+
+  class BrickBreaker {
+    + main(String[] args) : void
+  }
+
+  class GameStateManager {
+    currentState : int
+    + GameStateManager()
+    + setState(int state) : void
+    + getCurrentState() : int
+  }
+
+  class GamePanel  {
+    PANEL_WIDTH : int = 800
+    PANEL_HEIGHT : int = 500
+    base : Base
+    ball : Ball
+    bricks : ArrayList<Brick>
+    backgroundImageLabel : BackgroundImageLabel
+    timer : Timer
+    gameSettings : Settings
+    level : int
+    lastCollisionTime : long
+    COLLISION_COOLDOWN : long = 100
+    + GamePanel(Settings settings)
+    + actionPerformed(ActionEvent e) : void
+    - getBrickPattern(int level) : ArrayList<Brick>
+    - checkCollisionsWithBase(Base base, Ball ball) : void
+    - checkCollisionsWithBricks(ArrayList<Brick> bricks, Ball ball) : Brick
+    + paintComponent(Graphics g) : void
+  }
+
+  class LevelManager {
+    currentLevel : int = 1
+    brickPatternFactory : BrickPatternFactory
+    + LevelManager(BrickPatternFactory factory)
+    + nextLevel() : void
+    + getCurrentLevel() : int
+    + getBrickPattern() : BrickPattern
+  }
+
+  class CollisionManager {
+    COLLISION_COOLDOWN : long = 100
+    lastCollisionTime : long = 0
+    + CollisionManager()
+    + checkCollisionWithBase(Base base, Ball ball) : void
+    + checkCollisionWithBricks(ArrayList<Brick> bricks, Ball ball) : Brick
+  }
+
+  class Brick {
+    BRICK_WIDTH : int = 60
+    BRICK_HEIGHT : int = 20
+    x : int
+    y : int
+    color : Color
+    isBroken : boolean = false
+    + Brick(int x, int y, Color color)
+    + getBounds() : Rectangle
+    + getBRICK_WIDTH() : int
+    + getBRICK_HEIGHT() : int
+    + isBroken() : boolean
+    + setBroken(boolean broken) : void
+    + getColor() : Color
+  }
+
+  class Base   {
+    BASE_WIDTH : int = 130
+    BASE_HEIGHT : int = 15
+    x : int = 325
+    y : int = 400
+    velocity : int = 0
+    isRightKeyPressed : boolean = false
+    isLeftKeyPressed : boolean = false
+    + Base()
+    + move() : void
+    + getBASE_WIDTH() : int
+    + getBASE_HEIGHT() : int
+    + keyTyped(KeyEvent e) : void
+    + keyPressed(KeyEvent e) : void
+    + keyReleased(KeyEvent e) : void
+  }
+
+  class Ball  {
+    BALL_WIDTH : int = 20
+    BALL_HEIGHT : int = 15
+    xVelocity : int = 4
+    yVelocity : int = -4
+    x : int = 325
+    y : int = 350
+    + Ball()
+    + moveBall() : void
+    + getBALL_WIDTH() : int
+    + getBALL_HEIGHT() : int
+    + reset() : void
+    - checkWallCollision() : void
+    - checkBaseCollision(Base base) : boolean
+    - checkBrickCollision(ArrayList<Brick> bricks) : Brick
+    + getBounds() : Rectangle
+  }
+
+  class BrickPatternFactory {
+    + getBrickPattern(int level) : BrickPattern
+  }
+
+  interface BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  class LevelOneBrickPattern implements BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  class LevelTwoBrickPattern implements BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  class LevelThreeBrickPattern implements BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  class LevelFourBrickPattern implements BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  class LevelFiveBrickPattern implements BrickPattern {
+    + createBricks() : ArrayList<Brick>
+  }
+
+  GameFrame --* GamePanel
+  GameFrame --* Settings
+  GamePanel --* Base
+  GamePanel --* Ball
+  GamePanel --* BackgroundImageLabel
+  GamePanel --* Brick
+  GamePanel --* Settings
+  GamePanel --* LevelManager
+  LevelManager --* BrickPatternFactory
+  LevelManager --* BrickPattern
+  BrickPatternFactory ..> BrickPattern
+  LevelOneBrickPattern --|> BrickPattern
+  LevelTwoBrickPattern --|> BrickPattern
+  LevelThreeBrickPattern --|> BrickPattern
+  LevelFourBrickPattern --|> BrickPattern
+  LevelFiveBrickPattern --|> BrickPattern
+  GameFrame ..> AudioPlayback
+  GamePanel ..> AudioPlayback
+  Ball --* Base : checks collision with >
+  GamePanel --* CollisionManager : uses
+  CollisionManager --* Base
+  CollisionManager --* Ball
+  CollisionManager --* Brick
+  GamePanel --* GameStateManager : uses
+}
+
+@enduml

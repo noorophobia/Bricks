@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BrickBreaker" basedir="." default="test">
+
+    <!-- Set up paths for source code and test classes -->
+    <property name="src.dir" value="src" />
+    <property name="test.dir" value="test" />
+    <property name="build.dir" value="build" />
+    <property name="lib.dir" value="lib" />
+
+    <!-- Set the path to the JUnit library -->
+<property name="junit.jar" value="${lib.dir}/junit-4.12.jar" />
+
+    <!-- Initialize the build directory -->
+    <target name="init">
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <!-- Compile source code -->
+    <target name="compile" depends="init">
+        <mkdir dir="${build.dir}/classes" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}/classes" classpath="${junit.jar}">
+            <include name="**/*.java" />
+        </javac>
+    </target>
+
+    <!-- Compile test classes -->
+    <target name="compile-test" depends="compile">
+        <mkdir dir="${build.dir}/test-classes" />
+        <javac srcdir="${test.dir}" destdir="${build.dir}/test-classes" classpath="${build.dir}/classes:${junit.jar}">
+            <include name="**/*.java" />
+        </javac>
+    </target>
+
+    <!-- Run tests using JUnit -->
+    <target name="test" depends="compile-test">
+        <java fork="true" classname="org.junit.runner.JUnitCore" classpath="${build.dir}/classes:${build.dir}/test-classes:${junit.jar}">
+            <arg line="brickbreaker.AudioPlaybackTest" />
+            <arg line="brickbreaker.BackgroundImageLabelTest" />
+            <arg line="brickbreaker.BallTest" />
+            <arg line="brickbreaker.BaseTest" />
+            <arg line="brickbreaker.BrickBreakerTest" />
+            <arg line="brickbreaker.BrickPatternFactoryTest" />
+            <arg line="brickbreaker.BrickPatternStateTest" />
+            <arg line="brickbreaker.BrickTest" />
+            <arg line="brickbreaker.CollisionManagerTest" />
+            <arg line="brickbreaker.GameFrameTest" />
+            <arg line="brickbreaker.GamePanelTest" />
+            <arg line="brickbreaker.GameStateManagerTest" />
+            <arg line="brickbreaker.LevelManagerTest" />
+            <arg line="brickbreaker.SettingsTest" />
+        </java>
+    </target>
+
+    <!-- Clean the build directory -->
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+</project>
