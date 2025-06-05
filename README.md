@@ -7,9 +7,7 @@ This repository contains a refactored version of the classic **Brick Breaker gam
 
 ## 👤 Author
 
-- **Name:** Noor Fatima  
-- **Roll Number:** L21-6085  
-- **Course:** BS(SE)-8A  
+- **Name:** Noor Fatima   
 - **University:** FAST-NU, Lahore
 
 ---
